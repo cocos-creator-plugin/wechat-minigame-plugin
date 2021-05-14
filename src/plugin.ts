@@ -35,16 +35,13 @@ async function onBuildFinished(options, callback) {
 
 module.exports = {
     load() {
-        Editor.log("====load")
         Editor.Builder.on("build-finished", onBuildFinished);
     },
     unload() {
-        Editor.log("====unload")
         Editor.Builder.removeListener("build-finished", onBuildFinished);
     },
     messages: {
         settings() {
-            Editor.log("====settings")
             Editor.Panel.open(PACKAGE_NAME);
         },
         onConfigChange(event, arg) {
