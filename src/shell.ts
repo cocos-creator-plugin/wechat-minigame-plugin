@@ -37,6 +37,7 @@ if (localConfig.desc) {
             project,
             version: version,
             desc: localConfig.desc,
+            robot: localConfig.robot,
             qrcodeFormat: 'image',
             qrcodeOutputDest: qrcodeOutputDest,
             onProgressUpdate: logEnabled ? undefined : () => {}
@@ -46,6 +47,7 @@ if (localConfig.desc) {
             project,
             version: version,
             desc: desc,
+            robot: localConfig.robot,
             onProgressUpdate: logEnabled ? undefined : () => {}
         })
     }
