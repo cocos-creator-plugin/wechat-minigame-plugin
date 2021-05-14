@@ -1,8 +1,9 @@
 import {globalConfig, localConfig} from "../plugin-config";
+import {PACKAGE_NAME} from "../constant";
 
 let fs = require("fs");
 module.exports = Editor.Panel.extend({
-    template: fs.readFileSync(Editor.url("packages://wechat-minigame-plugin/static/options.html"), "utf8"),
+    template: fs.readFileSync(Editor.url(`packages://${PACKAGE_NAME}/static/options.html`), "utf8"),
 
     ready() {
         const Vue = window["Vue"];

@@ -1,11 +1,11 @@
 import {localConfig} from "../plugin-config";
 import {upload} from "../upload";
-import {TAG} from "../constant";
+import {PACKAGE_NAME, TAG} from "../constant";
 
 let fs = require("fs");
 
 module.exports = Editor.Panel.extend({
-    template: fs.readFileSync(Editor.url("packages://wechat-minigame-plugin/static/preview.html"), "utf8"),
+    template: fs.readFileSync(Editor.url(`packages://${PACKAGE_NAME}/static/preview.html`), "utf8"),
 
     run(args: string[]) {
         const [targetPath, buildPath] = args;

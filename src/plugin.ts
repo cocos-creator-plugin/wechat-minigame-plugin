@@ -1,6 +1,6 @@
 import {globalConfig, localConfig} from "./plugin-config";
 import {upload} from "./upload";
-import {TAG} from "./constant";
+import {PACKAGE_NAME, TAG} from "./constant";
 import {IMAGE_DEST_PATH} from "./url";
 
 async function onBuildFinished(options, callback) {
@@ -19,7 +19,7 @@ async function onBuildFinished(options, callback) {
                 }
                 await upload(true, options.dest, "0.0.1", localConfig.desc, localConfig.logEnabled)
                 callback();
-                Editor.Panel.open("wechat-minigame-plugin.2", [IMAGE_DEST_PATH, options.dest]);
+                Editor.Panel.open(`${PACKAGE_NAME}.2`, [IMAGE_DEST_PATH, options.dest]);
             } catch (e) {
                 callback(e);
             }
@@ -43,7 +43,7 @@ module.exports = {
     messages: {
         settings() {
             Editor.log("====settings")
-            Editor.Panel.open("wechat-minigame-plugin");
+            Editor.Panel.open(PACKAGE_NAME);
         },
         onConfigChange(event, arg) {
             let {
