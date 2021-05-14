@@ -25,9 +25,11 @@ async function onBuildFinished(options, callback) {
             }
         } else {
             Editor.log(TAG, "预览未开启，跳过上传");
+            callback();
         }
     } else {
         Editor.log(TAG, "发布平台不是‘微信小游戏’，跳过上传");
+        callback();
     }
 }
 
