@@ -23,10 +23,10 @@ module.exports = Editor.Panel.extend({
                 logEnabled: localConfig.logEnabled
             },
             methods: {
-                showError(message: string) {
+                showError(message: string, type = "error", title = "失败") {
                     Editor.Dialog.messageBox({
-                        type: "error",
-                        title: "失败",
+                        type: type,
+                        title: title,
                         message: message
                     });
                 },
@@ -82,6 +82,7 @@ module.exports = Editor.Panel.extend({
                             version : this.version,
                         }
                     });
+                    this.showError("保存成功", "info", "成功")
                 }
             }
         });

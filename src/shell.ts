@@ -22,7 +22,7 @@ if (localConfig.desc) {
     desc = `【${authName}】${localConfig.desc}`;
 } else {
     let date = new Date();
-    desc = `${authName} ${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${date.getHours()}时${date.getMinutes()}分上传。`;
+    desc = `${authName} 在 ${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${date.getHours()}时${date.getMinutes()}分 提交上传`;
 }
 (async () => {
     const project = new Project({

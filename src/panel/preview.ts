@@ -39,6 +39,11 @@ module.exports = Editor.Panel.extend({
 
                     await upload(false, buildPath);
                     Editor.log(TAG, "上传成功");
+                    Editor.Dialog.messageBox({
+                        type: "info",
+                        title: "成功",
+                        message: "上传成功"
+                    });
                 }
             }
         });
