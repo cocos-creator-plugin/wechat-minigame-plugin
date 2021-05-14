@@ -3,7 +3,6 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
     mode: 'production',
-    watch: true,
     entry: {
         index: './src/plugin.ts',
         shell: './src/shell.ts',
