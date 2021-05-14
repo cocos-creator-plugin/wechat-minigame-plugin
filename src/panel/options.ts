@@ -23,7 +23,35 @@ module.exports = Editor.Panel.extend({
                 logEnabled: localConfig.logEnabled
             },
             methods: {
+                showError(message: string) {
+                    Editor.Dialog.messageBox({
+                        type: "error",
+                        title: "失败",
+                        message: message
+                    });
+                },
                 saveAll() {
+                    if (this.autoPreviewEnabled) {
+                        if (!this.localEnable) {
+                            if (this.globalAuthName == "") {
+                                this.showError("使用全局配置的情况下，全局的'开发者'不能设置为空")
+                                return;
+                            }
+                        } else {
+                            if (this.authName == "") {
+                                this.showError("不使用全局配置的情况下，项目的'开发者'不能设置为空")
+                                return;
+                            }
+                        }
+                        if (this.appId == "") {
+                            this.showError("必须配置 'appId'")
+                            return;
+                        }
+                        if (this.privateKey == "") {
+                            this.showError("必须配置'小程序代码上传密钥'")
+                            return;
+                        }
+                    }
                     globalConfig.authName = this.globalAuthName;
                     globalConfig.logEnabled = this.globalLogEnabled;
                     localConfig.autoPreviewEnabled = this.autoPreviewEnabled;
@@ -33,9 +61,27 @@ module.exports = Editor.Panel.extend({
                     localConfig.robot = this.robot;
                     localConfig.privateKey = this.privateKey;
                     localConfig.desc = this.desc;
+                    localConfig.version = this.version;
                     localConfig.logEnabled = this.logEnabled;
                     globalConfig.save();
                     localConfig.save();
+                    Editor.Ipc.sendToMain(`${PACKAGE_NAME}:onConfigChange`, {
+                        globalConfig: {
+                            authName: this.globalAuthName,
+                            logEnabled: this.globalLogEnabled
+                        },
+                        localConfig: {
+                            autoPreviewEnabled: this.autoPreviewEnabled,
+                            localEnable : this.localEnable,
+                            authName : this.authName,
+                            appId : this.appId,
+                            robot : this.robot,
+                            privateKey : this.privateKey,
+                            desc : this.desc,
+                            logEnabled : this.logEnabled,
+                            version : this.version,
+                        }
+                    });
                 }
             }
         });

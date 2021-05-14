@@ -47,27 +47,18 @@ module.exports = {
         },
         onConfigChange(event, arg) {
             let {
-                globalAuthName,
-                globalLogEnabled,
-                autoPreviewEnabled,
-                localEnable,
-                authName,
-                appId,
-                robot,
-                privateKey,
-                desc,
-                logEnabled
+                globalConfig: global, localConfig: local
             } = arg;
-            globalConfig.authName = globalAuthName;
-            globalConfig.logEnabled = globalLogEnabled;
-            localConfig.autoPreviewEnabled = autoPreviewEnabled;
-            localConfig.localEnable = localEnable;
-            localConfig.authName = authName;
-            localConfig.appId = appId;
-            localConfig.robot = robot;
-            localConfig.privateKey = privateKey;
-            localConfig.desc = desc;
-            localConfig.logEnabled = logEnabled;
+            if (global != null) {
+                for (let key of Object.keys(global)) {
+                    globalConfig[key] = global[key];
+                }
+            }
+            if (local != null) {
+                for (let key of Object.keys(local)) {
+                    localConfig[key] = local[key];
+                }
+            }
         }
     }
 }

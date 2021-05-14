@@ -13,12 +13,30 @@ module.exports = Editor.Panel.extend({
         new Vue({
             el: this.shadowRoot,
             data: {
-                version: "1.0.1",
-                desc: '',
+                version: localConfig.version,
+                desc: localConfig.desc,
                 imgSrc: targetPath
             },
             methods: {
                 async upload() {
+                    if (this.version == "") {
+                        Editor.Dialog.messageBox({
+                            type: "error",
+                            title: "失败",
+                            message: "版本号不能为空"
+                        });
+                        return;
+                    }
+                    localConfig.version = this.version;
+                    localConfig.desc = this.desc;
+                    localConfig.save();
+                    Editor.Ipc.sendToMain(`${PACKAGE_NAME}:onConfigChange`, {
+                        localConfig: {
+                            version : this.version,
+                            desc : this.desc,
+                        }
+                    })
+
                     await upload(false, buildPath, this.version, this.desc || localConfig.desc, localConfig.logEnabled);
                     Editor.log(TAG, "上传成功");
                 }
