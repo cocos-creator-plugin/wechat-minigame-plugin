@@ -1,0 +1,22 @@
+<ui-box-container class="shadow">
+    <h1>预览</h1>
+    <hr/>
+    <div style="width:100%">
+        <img v-bind:src="imgSrc" style="width: 50%;margin: auto 25%;"/>
+    </div>
+    <div style="width:100%;" class="layout vertical center">
+        <h2 style="color: #FD942B">使用手机微信扫码预览</h2>
+    </div>
+    <h1>上传</h1>
+    <hr/>
+    <div class="layout vertical start-justified">
+        <ui-prop name="版本号">
+            <ui-input class="flex-1" v-value="version"></ui-input>
+        </ui-prop>
+        <ui-prop name="项目描述" type="string" v-value="desc" multiline auto-height></ui-prop>
+    </div>
+    <hr/>
+    <div class="layout horizontal end-justified">
+        <ui-button class="green" v-on:confirm="upload">上传</ui-button>
+    </div>
+</ui-box-container>

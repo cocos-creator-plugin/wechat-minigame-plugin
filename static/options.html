@@ -1,0 +1,46 @@
+<ui-box-container class="shadow">
+    <h1>全局配置</h1>
+    <hr />
+    <div class="layout vertical start-justified">
+        <ui-prop name="开发者" tooltip="开发者名字。\n如果项目描述为空，则使用\n'\${开发者} xx年xx月xx日 xx时xx分上传。'\n如果不为空，则使用'【\${开发者}】\${描述}'">
+            <ui-input class="flex-1" v-value="globalAuthName" ></ui-input>
+        </ui-prop>
+        <ui-prop name="开启日志">
+            <ui-checkbox v-value="globalLogEnabled"></ui-checkbox>
+        </ui-prop>
+    </div>
+    <hr />
+    <h1>项目配置</h1>
+    <hr />
+    <div class="layout vertical start-justified">
+        <ui-prop name="打包后自动预览">
+            <ui-checkbox v-value="autoPreviewEnabled"></ui-checkbox>
+        </ui-prop>
+        <ui-prop name="appId">
+            <ui-input class="flex-1" v-value="appId" ></ui-input>
+        </ui-prop>
+        <ui-prop name="机器人编号" tooltip="上传记录中的开发者一栏将会显示为'ci机器人${编号}'">
+            <ui-num-input class="flex-1" v-value="robot" step="1" min="1" max="30"  ></ui-num-input>
+        </ui-prop>
+        <ui-prop name="版本号">
+            <ui-input class="flex-1" v-value="version" ></ui-input>
+        </ui-prop>
+        <ui-prop name="描述" type="string" v-value="desc" multiline auto-height ></ui-prop>
+        <ui-prop name="小程序代码上传密钥" type="string" v-value="privateKey" multiline auto-height ></ui-prop>
+    </div>
+    <hr />
+    <h3><ui-checkbox v-value="localEnable"></ui-checkbox>&nbsp; 不使用全局配置（勾选后，下面的配置保存在项目内）</h3>
+    <hr />
+    <div>
+        <ui-prop name="开发者">
+            <ui-input class="flex-1" v-value="authName" v-disabled="!localEnable" ></ui-input>
+        </ui-prop>
+        <ui-prop name="开启日志">
+            <ui-checkbox v-value="logEnabled"></ui-checkbox>
+        </ui-prop>
+    </div>
+    <hr />
+    <div class="layout horizontal end-justified">
+        <ui-button class="green" v-on:confirm="saveAll">保存</ui-button>
+    </div>
+</ui-box-container>
