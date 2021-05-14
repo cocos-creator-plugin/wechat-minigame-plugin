@@ -103,11 +103,6 @@ declare namespace Editor {
             icon ?: any;
             cancelId ?: number;
             noLink ?: boolean;
-
-
         }
     }
-}
-declare namespace window {
-    declare class Vue {}
 }
