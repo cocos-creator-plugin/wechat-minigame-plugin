@@ -17,7 +17,7 @@ async function onBuildFinished(options, callback) {
                     Editor.warn(TAG, "未配置‘小程序代码上传密钥’，跳过上传");
                     return;
                 }
-                await upload(true, options.dest, "0.0.1", localConfig.desc, localConfig.logEnabled)
+                await upload(true, options.dest)
                 callback();
                 Editor.Panel.open(`${PACKAGE_NAME}.2`, [IMAGE_DEST_PATH, options.dest]);
             } catch (e) {

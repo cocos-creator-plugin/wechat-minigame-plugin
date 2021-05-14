@@ -37,7 +37,7 @@ module.exports = Editor.Panel.extend({
                         }
                     })
 
-                    await upload(false, buildPath, this.version, this.desc || localConfig.desc, localConfig.logEnabled);
+                    await upload(false, buildPath);
                     Editor.log(TAG, "上传成功");
                 }
             }
