@@ -32,6 +32,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clean-webpack-plugin": "*",
     "miniprogram-ci": "^1.2.3"
   },
   "devDependencies": {
